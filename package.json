@@ -1,0 +1,40 @@
+{
+  "name": "schawn",
+  "version": "0.0.1",
+  "description": "V12 schawn register botu.",
+  "main": "schawn.js",
+  "scripts": {
+    "start": "node schawn.js"
+  },
+  "author": "schawn",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "chalk": "^4.1.0",
+    "disc": "^1.3.3",
+    "discord.js": "^12.5.2",
+    "express": "^4.17.1",
+    "fs": "^0.0.2",
+    "http": "^0.0.0",
+    "jimp": "^0.16.1",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
+    "parse-ms": "^2.1.0",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "snekfetch": "^4.0.4",
+    "ytdl-core": "^4.5.0",
+    "quick.db": "^7.1.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
