@@ -1,22 +1,22 @@
 {
 
-"prefix": ".",
-"tag": "★",
-"sahip": "681250871119446025",
+"prefix": "PREFİXİNİZ",
+"tag": "TAGINIZ",
+"sahip": "SAHİP ID",
 
-"botses": "832269429370519582", 
-"sunucuID": "832268881825366108",
-"tagrol": "832269323203510293",
-"taglog": "832269515353358367",
-"registersohbet": "832269424567517235",
-"genelchat": "832269496890163240", 
-"savelog": "832269428354842685",
+"botses": "BOTUN SES ID", 
+"sunucuID": "SUNUCU ID",
+"tagrol": "TAG ALINCA VERİLCEK ROL ID",
+"taglog": "TAG ALINCA LOGA GÖNDERCEK ID",
+"registersohbet": "REGİSTER CHAT ID",
+"genelchat": "GENEL CHAT ID ", 
+"savelog": "KAYIT LOG ID",
 
-"yetkilirol": "832269305814450196",
-"erkekrol": "832269329298096178",
-"erkekrol2": "832269330041405462",
-"kadınrol": "832269326932901888",
-"kadınrol2": "832269327511191693",
-"kayıtsızrol": "832269334625648701"
+"yetkilirol": "REGİSTER YETKİLİ ROL ID",
+"erkekrol": "ERKEK ROL ID",
+"erkekrol2": "ERKEK ROL ID 2",
+"kadınrol": "KADIN ROL ID",
+"kadınrol2": "KADIN ROL ID 2",
+"kayıtsızrol": "KAYITSIZ ROL ID"
 
 }     
