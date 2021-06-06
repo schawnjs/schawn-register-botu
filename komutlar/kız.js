@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {
 
     if(message.channel.id !== kayıtçet) return message.channel.send(`Sadece Burda Kullanabilirsin <#${kayıtçet}>`)
 
-    if(!message.member.roles.cache.get(yetkilicik)) return message.channel.send(`Bu Komutu Kullanabilmek İçin <@&${yetkilicik}> Rolüne Sahip Olman Gerekiyor.`)
+    if(!message.member.roles.cache.get("847578560704282634") && !message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu Komutu Kullanabilmek İçin <@&${yetkilicik}> Rolüne Sahip Olman Gerekiyor.`)
 
     const genelchatt = message.guild.channels.cache.find(c => c.id === genelçet)
 
@@ -55,10 +55,17 @@ exports.run = async (client, message, args) => {
 
   savelogg.send(new Discord.MessageEmbed()
       .setAuthor(message.author.tag, message.author.avatarURL({ dynamic: true }))
-      .setDescription(`• Yetkili: ${message.author}\n• Kayıt Yapılan Kullanıcı: ${kullanici}\n• Güncel İsmi: **${tagcım} ${ad} | ${yas}**\n• Verilen Roller: <@&${kadınrol1}>, <@&${kadınrol2}> \n• Kayıt Yapılan Kanal: <#${message.channel.id}> \n• Toplam Kayıtlar: **${toplamkayıt}**`)
+      .setDescription(`• Yetkili: ${message.author} - (\`${message.author.id})\`\n• Kayıt Yapılan Kullanıcı: ${kullanici} - (\`${kullanici.id})\`\n• Güncel İsmi: **${tagcım} ${ad} | ${yas}**\n• Verilen Roller: <@&${kadınrol1}>, <@&${kadınrol2}> \n• Kayıt Yapılan Kanal: <#${message.channel.id}> \n\n• Yetkilinin Toplam Kayıtları: **${toplamkayıt}**`)
       .setColor("#65d8c4"));
 
-  genelchatt.send(`${kullanici} Aramıza katıldı! Güzel karşılayın arkadaşı.`)
+ genelchatt.send(`${kullanici} Aramıza Katıldı! Hoşgeldin Dostum :)`)
+
+ db.push(`isimcm_${message.guild.id}`, {
+  user: membır.id,
+  isim: ad,
+  yas: yas,
+  role: kadınrol1.id
+ });
 }
 
 exports.conf = {

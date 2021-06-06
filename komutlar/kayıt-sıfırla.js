@@ -6,14 +6,15 @@ exports.run = async (client, message, args) => {
     
     let yetkilicik = ayarlar.yetkilirol;
 
-    if(!message.member.roles.cache.get(yetkilicik)) return message.channel.send(`Bu Komutu Kullanabilmek İçin <@&${yetkilicik}> Rolüne Sahip Olman Gerekiyor.`)
+    if(!message.member.roles.cache.get("847578560704282634") && !message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu Komutu Kullanabilmek İçin <@&${yetkilicik}> Rolüne Sahip Olman Gerekiyor.`)
 
     let kullanici = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
 
     if(!kullanici) {
-      message.channel.send(`Kayıt Verilerini Sıfırlayacağın Kullanıcıyı Etiketle.`) 
       message.react("<a:schawnxtik:834484837313413120>") 
-      setTimeout(() => {
+      message.channel.send(`Kayıt Verilerini Sıfırlayacağın Kullanıcıyı Etiketle.`) 
+      .then(x => x.delete({ timeout: 5000 }))
+       setTimeout(() => {
        message.delete()  
       }, 5000)
     }

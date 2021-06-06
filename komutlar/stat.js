@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
 
      let yetkilicik = ayarlar.yetkilirol;
        
-     if(!message.member.roles.cache.get(yetkilicik)) return message.channel.send(`Bu Komutu Kullanabilmek İçin <@&${yetkilicik}> Rolüne Sahip Olman Gerekiyor.`)
+     if(!message.member.roles.cache.get("847578560704282634") && !message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu Komutu Kullanabilmek İçin <@&${yetkilicik}> Rolüne Sahip Olman Gerekiyor.`)
 
      let kullanici = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
 
@@ -35,13 +35,11 @@ exports.run = async (client, message, args) => {
 
     **\`>\`** Kadın Kayıt Sayın: **${kadınab}**`)
     .setTimestamp()
-    .setFooter(`scháwn ❤️ Pulsé`)
+    .setFooter(`schâwn ❤️ Lawertz`)
      return message.channel.send(stats)
      }
-
-     /////////////////////////////////----------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
  
-     if(kullanici) { // eğer kullanıcı etiketlenmişsse onunkini gösterir
+     if(kullanici) { // eğer kullanıcı etiketlenmişse onunkini gösterir
 
      let erkekabi = db.fetch(`erkekKisi_${kullanici.id}`)
      let kadınabi = db.fetch(`kadinKisi_${kullanici.id}`)
@@ -66,7 +64,7 @@ exports.run = async (client, message, args) => {
       
      **\`>\`** Kadın Kayıt Sayısı: **${kadınabi}**`)
       .setTimestamp()
-      .setFooter(`scháwn ❤️ Pulsé`)
+      .setFooter(`schâwn ❤️ Lawertz`)
        return message.channel.send(statsab)
      }
     }

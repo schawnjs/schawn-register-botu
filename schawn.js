@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const ayarlar = require("./ayarlar.json") 
 const db = require("quick.db");
-const ms = require("parse-ms");
 const moment = require('moment');
 require("moment-duration-format");
 const snekfetch = require("snekfetch");
@@ -127,9 +126,9 @@ client.on("ready", () => {
 
 //--------------------------TAG-ROL--------------------------\\
 
-client.on("userUpdate", async (eski, yeni) => {
+client.on("userUpdate", async (eskiKullanici, yeniKullanici) => {
 
- if(eski.username !== yeni.username) {
+ if(eskiKullanici.username !== yeniKullanici.username) {
 
  let sunucu = ayarlar.sunucuID; // sunucu
  let tag = ayarlar.tag; // tagınız
@@ -140,46 +139,46 @@ try {
    
 // TAG ALAN KULLANICI
 
-if(yeni.username.includes(tag) && !client.guilds.cache
+if(yeniKullanici.username.includes(tag) && !client.guilds.cache
 .get(sunucu)
-.members.cache.get(yeni.id)
+.members.cache.get(yeniKullanici.id)
 .roles.cache.has(rol)) {
 
  await client.channels.cache.get(çenıl)
   .send(new Discord.MessageEmbed()
   .setColor("GREEN")
-  .setDescription(`${yeni} Adlı Kullanıcı **${tag}** Tagını Aldığı İçin **<@&${rol}>** Rolünü Kazandı!`)
+  .setDescription(`${yeniKullanici} Adlı Üye \`${tag}\` Tagını Aldığı İçin **<@&${rol}>** Rolünü Kazandı!`)
   .setTimestamp())
   
   await client.guilds.cache
   .get(sunucu)
-  .members.cache.get(yeni.id)
+  .members.cache.get(yeniKullanici.id)
   .roles.add(rol)
 } 
 
 // TAG SALAN KULLANICI
 
-if(!yeni.username.includes(tag) && client.guilds.cache
+if(!yeniKullanici.username.includes(tag) && client.guilds.cache
 .get(sunucu)
-.members.cache.get(yeni.id)
+.members.cache.get(yeniKullanici.id)
 .roles.cache.has(rol)) {
 
   await client.channels.cache.get(çenıl)
   .send(new Discord.MessageEmbed()
   .setColor("RED")
-  .setDescription(`${yeni} Adlı Kullanıcı **${tag}** Tagını Çıkardığı İçin **<@&${rol}>** Rolünü Kaybetti!`)
+  .setDescription(`${yeniKullanici} Adlı Üye \`${tag}\` Tagını Çıkardığı İçin **<@&${rol}>** Rolünü Kaybetti!`)  
   .setTimestamp())
 
   await client.guilds.cache
   .get(sunucu)
-  .members.cache.get(yeni.id)
+  .members.cache.get(yeniKullanici.id)
   .roles.remove(rol)
 }
  } catch (err) {
   console.log(err)
-  } 
-}
-})
+   } 
+  }
+});
 
 //--------------------------TAG-ROL--------------------------\\
 
@@ -214,61 +213,77 @@ client.on("guildMemberAdd", member => {
  // güvenlimi şüphelimi kontrol etcek
 
  const kurls = new Date().getTime() - kullanici.createdAt.getTime();
- const günla = moment.duration(kurls).format("DD")
+ const gecn = moment.duration(kurls).format("Y [yıl], MM [ay], DD [gün] önce")
 
  var kontrl;
 
- if(günla > 7) {
-  kontrl = "Güvenli <a:schawntik:834484844876398622>"
- } 
- if(günla < 7) {
-  kontrl = "Şüpheli <a:schawnxtik:834484837313413120>"
- }
-
- member.setNickname(`★ İsim | Yaş`) // sunucuya gelen kullanıcının adını İsim Yaş yapar
+ if(kurls > 1296000000) { kontrl = "Güvenli <a:schawntik:834484844876398622>" } 
+ if(kurls < 1296000000) { kontrl = "Şüpheli <a:schawnxtik:834484837313413120>" }
 
  kanal.send(`
 
-<a:valeria:838862022123978773> Valeria'ya hoşgeldin ${member} | (\`${member.id}\`) hesabın \`${moment(kullanici.createdAt).format("DD")} ${aylar[moment(kullanici.createdAt).format('MM')]} ${moment(kullanici.createdAt).format('YYYY HH:mm:ss')}\`'de oluşturulmuş ve hesabın **${kontrl}**
+Lawertz'e hoşgeldin ${member} - (\`${member.id}\`) seninle beraber **${guild.memberCount}** kişi olduk.
 
-  <a:valeria:838862022123978773>  Seninle beraber **${guild.memberCount}** kişi olduk!
+  Hesabın \`${moment(kullanici.createdAt).format("DD")} ${aylar[moment(kullanici.createdAt).format("MM")]} ${moment(kullanici.createdAt).format("YYYY")} saat ${moment(kullanici.createdAt).format("HH:mm:ss")}\`'de oluşturulmuş (\`${gecn}\`) ve hesabın **${kontrl}**
 
-    <a:valeria:838862022123978773>  Kayıt olmak için ses odalarından birine geçip **<@&${yetkilicik}>** rolündeki yetkililere teyit vererek kayıt olabilirsin.
+    Kayıt olmak için ses odalarından birine geçip **<@&${yetkilicik}>** rolündeki yetkililere teyit vererek kayıt olabilirsin.
 
-  <a:valeria:838862022123978773>  Sunucumuzun (\`★\`) tagını alarak ailemizden biri olabilirsin.
-
-<a:valeria:838862022123978773> Keyifli vakitler dileriz, bu arada <#832269433137004544> kısmına göz atarsan seviniriz.`)
+  Sunucumuzun (\`ተ\`) tagını alarak ailemizden biri olabilirsin. İyi eğlenceler dileriz...`)
   
  setTimeout(() => {
   client.channels.cache
   .get(kayıtkanal)
-  .send(`||<@&${yetkilicik}>||`)  
+  .send(`<@&${yetkilicik}>`)  
  },3000)
-})
+});
 
 //--------------------------KAYIT-SİSTEMİ--------------------------\\
 
 //--------------------------OTOROL--------------------------\\
 
-client.on("guildMemberAdd", member => {
-  let kayıtsızımabi = ayarlar.kayıtsızrol;
-  member.roles.add(kayıtsızımabi);
-})  
+client.on("guildMemberAdd", schawnoa => {
+  let kayıtsz = ayarlar.kayıtsızrol;
+  schawnoa.setNickname("• İsim | Yaş") // sunucuya gelen kullanıcının adını • İsim | Yaş yapar
+  schawnoa.roles.add(kayıtsz);
+});  
 
 //--------------------------OTOROL--------------------------\\
 
-//--------------------------ŞÜPHELİ-HESAP--------------------------\
+//--------------------------TAG-KONTROL--------------------------\\
 
-client.on('guildMemberAdd', async member => {
-  let kullanici = client.users.get(member.id);
+client.on("guildMemberAdd", member => {
+  
+ let tag = ayarlar.tag;
+ let sunucu = ayarlar.sunucuID;
+ let rolcm = ayarlar.tagrol;
 
-  const tarih = new Date().getTime() - kullanici.createdAt.getTime();
-  if (tarih < 60480001656)
+ if(member.user.username.includes(tag)) // eğer kullanıcının adında tag varsa 
+ member.roles.add(rolcm) // tag rolünü verior
 
-  member.roles.add("832269310834638858") // şüpheli rol ID
-  member.roles.remove("832269334625648701") // kayıtsız rol ID
+ const oa = new Discord.MessageEmbed()
+  .setColor(rolcm.hexColor)
+  .setDescription(`${member} Aramıza Taglı olarak Katıldı.`)
+  .setTimestamp()
+  
+  client.channels.cache
+  .get(ayarlar.taglog)
+  .send(oa)
 });
 
-//--------------------------ŞÜPHELİ-HESAP--------------------------\
+//--------------------------TAG-KONTROL--------------------------\\
+
+//--------------------------YASAKLI-TAG--------------------------\\
+
+client.on("guildMemberAdd", member => {
+
+  let yasakli = ["★"] // yasaklı tagları buraya yazin
+  
+  if(member.user.username.includes(yasakli)) {
+    member.kick()
+    member.send("Dostum İsmindeki Yasaklı Tag'dan Dolayı \`★\` Sunucudan Kicklendin Tagı Çıkarıp Tekrar Gelirsen Kayıt Olabilirsin.")
+  }
+});
+
+//--------------------------YASAKLI-TAG--------------------------\\
 
 client.login(process.env.token);

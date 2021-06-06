@@ -9,7 +9,7 @@
   "author": "schawn",
   "dependencies": {
     "ascii-table": "0.0.9",
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "disc": "^1.3.3",
     "discord.js": "^12.5.2",
     "express": "^4.17.1",
@@ -18,11 +18,10 @@
     "jimp": "^0.16.1",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "parse-ms": "^2.1.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "snekfetch": "^4.0.4",
-    "ytdl-core": "^4.5.0",
+    "ytdl-core": "^4.8.0",
     "quick.db": "^7.1.2"
   },
   "engines": {
